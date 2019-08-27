@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WALL-CLOCK</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <!-- this program initially calculates rotation of clock hands based on time, then uses CSS animations to run clock after initial rotation is set -->
+    
+    <!-- outer hexagon -->
+    <div class="hexCon3" id="hex3"></div>
+    <!-- black border -->
+    <div class="hexCon2"></div>
+    <!-- inner hex -->
+    <div class="hexCon">
+        <!-- used with .expand animation -->
+        <div class="whiteCircle expand" id="whiteCircle"></div>
+        <!-- six tri containers, which hold all the geometric shapes-->
+        <div class="tri">
+    
+            <div class="tri1 tri10"></div>
+            <div class="tri1 tri2 tri9"></div>
+            <div class="tri1 tri8"></div>
+            <div class="tri1 tri2 tri7"></div>
+            <div class="tri1 tri6"></div>
+            <div class="tri1 tri5"></div>
+            <div class="tri1 tri2 tri4"></div>
+            <div class="tri1 tri3"></div>
+            <div class="tri1 tri2"></div>
+            <div class="tri1"></div>
+    
+    
+            <div class="triL"></div>
+            <div class="triL triR"></div>
+            <div class="rhombus"></div>
+        </div>
+    
+        <div class="tri triB">
+    
+            <div class="tri1 tri10"></div>
+            <div class="tri1 tri2 tri9"></div>
+            <div class="tri1 tri8"></div>
+            <div class="tri1 tri2 tri7"></div>
+            <div class="tri1 tri6"></div>
+            <div class="tri1 tri5"></div>
+            <div class="tri1 tri2 tri4"></div>
+            <div class="tri1 tri3"></div>
+            <div class="tri1 tri2"></div>
+            <div class="tri1"></div>
+    
+    
+            <div class="triL"></div>
+            <div class="triL triR"></div>
+            <div class="rhombus"></div>
+        </div>
+    
+        <div class="tri triC">
+    
+            <div class="tri1 tri10"></div>
+            <div class="tri1 tri2 tri9"></div>
+            <div class="tri1 tri8"></div>
+            <div class="tri1 tri2 tri7"></div>
+            <div class="tri1 tri6"></div>
+            <div class="tri1 tri5"></div>
+            <div class="tri1 tri2 tri4"></div>
+            <div class="tri1 tri3"></div>
+            <div class="tri1 tri2"></div>
+            <div class="tri1"></div>
+    
+    
+            <div class="triL"></div>
+            <div class="triL triR"></div>
+            <div class="rhombus"></div>
+        </div>
+    
+        <div class="tri triD">
+    
+            <div class="tri1 tri10"></div>
+            <div class="tri1 tri2 tri9"></div>
+            <div class="tri1 tri8"></div>
+            <div class="tri1 tri2 tri7"></div>
+            <div class="tri1 tri6"></div>
+            <div class="tri1 tri5"></div>
+            <div class="tri1 tri2 tri4"></div>
+            <div class="tri1 tri3"></div>
+            <div class="tri1 tri2"></div>
+            <div class="tri1"></div>
+    
+    
+            <div class="triL"></div>
+            <div class="triL triR"></div>
+            <div class="rhombus"></div>
+        </div>
+    
+        <div class="tri triE">
+    
+            <div class="tri1 tri10"></div>
+            <div class="tri1 tri2 tri9"></div>
+            <div class="tri1 tri8"></div>
+            <div class="tri1 tri2 tri7"></div>
+            <div class="tri1 tri6"></div>
+            <div class="tri1 tri5"></div>
+            <div class="tri1 tri2 tri4"></div>
+            <div class="tri1 tri3"></div>
+            <div class="tri1 tri2"></div>
+            <div class="tri1"></div>
+    
+    
+            <div class="triL"></div>
+            <div class="triL triR"></div>
+            <div class="rhombus"></div>
+        </div>
+    
+        <div class="tri triF">
+    
+            <div class="tri1 tri10"></div>
+            <div class="tri1 tri2 tri9"></div>
+            <div class="tri1 tri8"></div>
+            <div class="tri1 tri2 tri7"></div>
+            <div class="tri1 tri6"></div>
+            <div class="tri1 tri5"></div>
+            <div class="tri1 tri2 tri4"></div>
+            <div class="tri1 tri3"></div>
+            <div class="tri1 tri2"></div>
+            <div class="tri1"></div>
+    
+    
+            <div class="triL"></div>
+            <div class="triL triR"></div>
+            <div class="rhombus"></div>
+        </div>
+    
+    
+    
+    
+    
+    
+        <!-- outerRing and middleRing used to make clockCon look like a shiny clock-->
+        <div class="clockCon">
+            <div class="outerRing" id="outerRing">
+                <div class="middleRing" id="middleRing">
+                    <div class="clockFace">
+                        <!-- all the little lines on the clock-->
+                        <div class="bar">
+                            <div class="barLeft barLeft2"></div>
+                            <div class="barRight barRight2"></div>
+                        </div>
+                        <div class="bar rot6">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot12">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot18">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot24">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot30">
+                            <div class="barLeft barLeft2"></div>
+                            <div class="barRight barRight2"></div>
+                        </div>
+                        <div class="bar rot36">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot42">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot48">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot54">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot60">
+                            <div class="barLeft barLeft2"></div>
+                            <div class="barRight barRight2"></div>
+                        </div>
+                        <div class="bar rot66">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot72">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot78">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot84">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot90">
+                            <div class="barLeft barLeft2"></div>
+                            <div class="barRight barRight2"></div>
+                        </div>
+                        <div class="bar rot96">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot102">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot108">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot114">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot120">
+                            <div class="barLeft barLeft2"></div>
+                            <div class="barRight barRight2"></div>
+                        </div>
+                        <div class="bar rot126">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot132">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot138">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot144">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot150">
+                            <div class="barLeft barLeft2"></div>
+                            <div class="barRight barRight2"></div>
+                        </div>
+                        <div class="bar rot156">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot162">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot168">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <div class="bar rot174">
+                            <div class="barLeft"></div>
+                            <div class="barRight"></div>
+                        </div>
+                        <!-- clock numbers -->
+                        <div class="number">12</div>
+                        <div class="number number1">1</div>
+                        <div class="number number2">2</div>
+                        <div class="number number3">3</div>
+                        <div class="number number4">4</div>
+                        <div class="number number5">5</div>
+                        <div class="number number6">6</div>
+                        <div class="number number7">7</div>
+                        <div class="number number8">8</div>
+                        <div class="number number9">9</div>
+                        <div class="number number10">10</div>
+                        <div class="number number11">11</div>
+                        <!--hands of the clock-->
+                        <div class="bar" id="hourBar">
+                            <div class="barInn" id="houBarIn">
+                                <div class="hourHand">
+    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar" id="minuteBar">
+                            <div class="barInn" id="minBarIn">
+                                <div class="minuteHand"></div>
+                                <div class="handPoly"></div>
+                            </div>
+                        </div>
+                        <div class="bar" id="secondBar">
+                            <div class="barInn" id="secBarIn">
+                                <div class="secondHand"></div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                    <div class="glow" id="glow">
+    
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        <!-- used to provide a border around clock -->
+        <div class="clockCon2"></div>
+    </div>
+
+</body>
+</html>

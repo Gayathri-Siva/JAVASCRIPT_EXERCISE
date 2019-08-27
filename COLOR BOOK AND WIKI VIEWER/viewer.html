@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="jquery.min.js"></script>
+<head>
+  <style>
+  body {
+  font-family: 'Lusitana', serif;
+  text-align: center;
+  margin: 3% 0% 3% 0%;
+  min-width: 600px;
+}
+
+a {
+  color: inherit;
+  /* blue colors for links too */
+  
+  text-decoration: inherit;
+  /* no underline */
+}
+
+a:focus,
+a:hover,
+a:active {
+  color: inherit;
+  text-decoration: inherit;
+  /* no underline */
+  
+  outline: none;
+}
+
+#header {
+  font-size: 75px;
+}
+
+.headerBig {
+  font-size: 100px;
+}
+
+#searchBar {
+  font-size: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  vertical-align: top;
+  min-height: 40px;
+}
+
+#searchButton {
+  margin: none;
+  border: none;
+  padding: 6px 10px 6px 10px;
+  margin-left:-2px;
+  min-height: 46px;
+  font-size: 25px !important;
+  background-color: #dddddd;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  vertical-align: top;
+}
+
+#searchEntryField {
+  width: 40%;
+  border: none;
+  min-height: inherit;
+  padding: 3px 5px 3px 5px;
+  background-color: #dddddd;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  vertical-align: top;
+}
+
+#searchButton:hover {
+  background-color: #A499B3;
+}
+
+#searchButton:focus,
+#searchEntryField:focus {
+  outline: 0;
+}
+/* Align autocomplete text to the left */
+
+.ui-autocomplete {
+  text-align: left;
+}
+
+.results_info {
+  background-color: #C0C5C1;
+  margin: 20px 15% 20px 15%;
+  padding: 10px 10px 10px 10px;
+  border-radius: 10px;
+}
+
+.results_info_headline {
+  font-size: 30px;
+  font-weight: bold;
+}
+/*!
+ * Hover.css (https://ianlunn.github.io/Hover/)
+ * Version: 2.0.2
+ * Author: Ian Lunn @IanLunn
+ * Author URL: https://ianlunn.co.uk/
+ * Github: https://github.com/IanLunn/Hover
+ * Made available under a MIT License:
+ * https://www.opensource.org/licenses/mit-license.php
+ * Hover.css Copyright Ian Lunn 2014. Generated with Sass.
+ */
+/* 2D TRANSITIONS */
+/* Float */
+
+.hvr-float {
+  /*display: inline-block;*/
+  
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.hvr-float:hover,
+.hvr-float:focus,
+.hvr-float:active {
+  -webkit-transform: translateX(15px);
+  transform: translateX(15px);
+}
+  
+  
+  </style>
+  <script>
+  var autocompleteList = [];		// Contains list of words obtained from API call used for autocomplete
+
+$("document").ready(function(){
+
+	// Implements autocomplete to the search bar we have
+	$(function() {
+		$( "#searchEntryField" ).autocomplete({
+		   source: autocompleteList
+		});
+	});
+
+	// Triggers wiki API Call on every keystroke when the searchEntryField is in focus
+	$( "#searchEntryField" ).bind('keypress', function( keyBeingPressed ) {
+
+		// 13 == ENTER key
+		if( keyBeingPressed.keyCode==13 ){	
+			getAPIresponse();
+			return;
+		}
+	    
+	    var tempString = document.getElementById('searchEntryField').value;
+
+	    $.ajax({
+	         url: "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&limit=10&namespace=0&format=json&search=" + tempString,
+	         dataType: "jsonp",
+
+	         success: function(response){
+	             while(autocompleteList.length > 0)
+	                autocompleteList.pop();
+
+	             for( var i=0; i<response[1].length; i++)
+	                autocompleteList.push(response[1][i]);
+	         }
+	    });
+	});
+
+	// Performs wiki API call to search for a list of articles using the TEXT in the searchEntryField
+	$( "#searchButton" ).click( function(){ getAPIresponse(); } );
+});
+
+
+
+function getAPIresponse(){
+
+	var searchValue = document.getElementById('searchEntryField').value;
+	// Clears previous search results
+	$("#results_list").empty();		
+
+	// Use jQuery AJAX method to request JSON from server
+	$.ajax({
+
+	    url: "https://en.wikipedia.org/w/api.php?action=opensearch&format=json&limit=10&namespace=0&format=json&search=" + searchValue,
+	    dataType: "jsonp",
+	    success: function(response){
+	    	
+	    	var KEY = response[1];	    	// Obtain list of keys from API response
+
+	    	// Display a message if we didn't get any results from wikipedia
+	    	if( KEY == 0 ){
+	    		document.getElementById("results_list").innerHTML =  '<div class="results_info"><div class="results_info_headline">Unable to find any results from Wikipedia</div></div>';
+	    		return;
+	    	}
+
+	    	// For each element in the response array:
+			for( var i=0; i<KEY.length; i++ ){	
+				createNewsStruct( i );		// Create struct to contain each result
+				parseResults(response, i);	// Fill in data into struct
+			}
+
+			// Show results once we have done parsing all of them
+			for( var i=0; i<KEY.length; i++ ){	
+				$("#results_"+i).delay( i*200 ).fadeIn(500); 
+			}
+
+	    },        
+	    // Display a message if something went wrong with the AJAX call
+	    error: function(xhr, status, error){
+            document.getElementById("results_list").innerHTML =  '<div class="results_info" id="results_0">Uh-oh, something went wrong...</div>';
+        }
+	});	
+}
+
+// Creates structs & appends to news_list to contain each camper news
+function createNewsStruct( resultIndex ){
+
+    // Create empty div & hide it (show it after we perform AJAX success callback)
+   	document.getElementById("results_list").innerHTML +=  '<div class="results_info hvr-float" id="results_'+resultIndex+'"></div>';
+    $("#results_"+resultIndex).hide();
+
+    // Fill in the empty wrapper div with more div's
+    document.getElementById("results_"+resultIndex).innerHTML += '<a id="result_url_'+resultIndex+'">'
+                                                                	+'<div class="results_info_headline" id="results_headline_'+resultIndex+'">&nbsp;</div>'
+                                                                	+'<div class="results_info_extract"  id="results_extract_'+resultIndex+'">&nbsp;</div>'
+                                                            	+'</a>';
+}
+
+// Parses the JSON data into the div's created earlier on
+function parseResults( jsonObject, resultIndex ){
+
+    $("#results_headline_"+resultIndex).text(jsonObject[1][resultIndex]);					// Set headline & URL
+    $("#results_extract_"+resultIndex).text(jsonObject[2][resultIndex]);					// Set extract
+    document.getElementById("result_url_"+resultIndex).href = jsonObject[3][resultIndex];  	// Set URL         
+    document.getElementById("result_url_"+resultIndex).target ="_blank";					// Make it open article in a new tab
+}
+
+
+  
+  </script>
+</head>
+<body>
+    <div id="header"><span class="headerBig">W</span>IKIPEDI<span class="headerBig">A V</span>IEWER</div>
+<!-- <div id="headerImage"><i class="fa fa-globe"></i></div> -->
+<div class="ui-widget" id="searchBar">
+  <input id="searchEntryField"><button id="searchButton"><i class="fa fa-search"></i></button>
+</div>
+
+<div id="results_list"></div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+/* Layout
+***********************/
+
+.layout {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background: #eff7ff;
+}
+
+/* Button
+***********************/
+
+.button {
+	background: #fff;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
+	display: inline-block;
+	transition: all 290ms cubic-bezier(.53, .57, .04, .97), background 100ms ease, transform 200ms ease;
+	width: 115px;
+	height: 60px;
+	text-align: center;
+	position: relative;
+}
+
+.button:active {
+	background: #2b6dd7;
+	transform: scale(.97);
+}
+
+.button__trigger {
+	opacity: 1;
+	padding: 13px 35px;
+	background: #2979ff;
+	color: #fff;
+	font-size: 20px;
+	border: none;
+	font-weight: 500;
+	font-family: 'Roboto', sans-serif;
+	text-align: center;
+	cursor: pointer;
+	height: 60px;
+	margin: 0;
+}
+
+.button__trigger:focus {
+	outline: none;
+}
+
+/* Editor
+***********************/
+
+.editor {
+	height: 0;
+	transition: all 300ms ease;
+	transition-delay: 300ms;
+	overflow: hidden;
+}
+
+.editor__textarea {
+	padding: 30px;
+	border: none;
+	resize: none;
+	width: 100%;
+	height: 100%;
+	font-size: 16px;
+}
+
+.editor__textarea:focus {
+	outline: none;
+}
+
+/* Toolbar
+***********************/
+
+.toolbar {
+	overflow: hidden;
+	position: relative;
+	height: 0;
+	background: #2979ff;
+}
+
+.toolbar__slot {
+	margin: 0;
+	padding: 0;
+	color: #fff;
+	position: absolute;
+	top: 0;
+}
+
+.toolbar__slot--right {
+	right: 0;
+	padding-right: 15px;
+}
+
+.toolbar__slot--left {
+	left: 0;
+	padding-left: 10px;
+}
+
+.toolbar__item {
+	display: inline-block;
+	margin: 0;
+	opacity: 0;
+	padding: 21px 7px 18px;
+	transition: opacity 880ms ease;
+	transition-delay: 0;
+}
+
+.toolbar__item .material-icons {
+	font-size: 20px !important;
+}
+
+.arrow {
+	background: rgba(0, 0, 0, .1);
+	height: 10px;
+	padding: 3px 3px 20px;
+	vertical-align: top;
+	margin-top: 19px;
+	margin-left: 10px;
+}
+
+/***************************************/
+
+.layout--writing .button__trigger {
+	display: none;
+}
+
+.layout--writing .button:active {
+	background: #fff;
+	transform: scale(1);
+}
+
+.layout--writing .button {
+	pointer-events: none;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
+}
+
+.layout--writing .editor {
+	height: 200px;
+	pointer-events: all;
+}
+
+.layout--writing .toolbar {
+	height: 60px;
+}
+
+.layout--writing .toolbar__item {
+	opacity: 1;
+}

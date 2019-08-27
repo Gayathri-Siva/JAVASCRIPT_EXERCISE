@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <script src="jquery.min.js"></script> -->
+</head>
+<style>
+  body{
+            margin:0;
+            background-color: #1995ad;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        .book-section{
+            height: 100vh;
+            width: 100%;
+            text-align: center;
+        }
+        .book-section > .container{
+            height: 800px;
+            width: 90%;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2%;
+            margin-bottom: 30px;
+            perspective: 1200px;
+        }
+        .container > .right{
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            transition: 0.7s ease-in-out;
+            transform-style: preserve-3d;
+        }
+        .book-section > .container > .right{
+            right:0;
+            transform-origin: left;
+            border-radius: 10px 0 0 10px;
+        }
+        .right > figure.front, .right > figure.back{
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            left:0;
+            top:0;
+            background-size: 200%;
+            background-repeat: no-repeat;
+            backface-visibility: hidden;
+            background-color: white;
+            overflow: hidden;
+        }
+        .right > figure.front{
+            background-position: right;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 2px 2px 15px -2px rgba(0,0,0,0.2);
+        }
+        .right > figure.back{
+            background-position: left;
+            border-radius: 10px 0 0 10px;
+            box-shadow: -2px 2px 15px -2px rgba(0,0,0,0.2);
+            transform: rotateY(180deg);
+        }
+        .flip{
+            transform: rotateY(-180deg);
+        }
+        .flip::before{
+            content: "";
+            position: absolute;
+            top:0;
+            left:0;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            border-radius: 0 10px 10px 0;
+            background-color: rgba(0,0,0,0.1);
+        }
+        .book-section > button{
+            border: 2px solid #ef9f00;
+            background-color: transparent;
+            color: gold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s ease-in-out;
+        }
+        .book-section > button:focus, .book-section > button:active{
+            outline: none;
+        }
+        .book-section > p{
+            color: rgba(0,0,0,0.7);
+            font-family: calibri;
+            font-size: 24px;
+        }
+        .book-section > p > a{
+            text-decoration: none;
+            color: #ef9f00;
+        }
+        .book-section > button:hover{
+            background-color: #ef9f00;
+            color: #fff;
+        }
+        .front#cover, .back#back-cover{
+            background-color: #ffcb63;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            text-align: center;
+            padding-top:70px;
+        }
+        .front#cover h1{
+            color: #fff;
+        }
+        .front#cover p{
+            color: rgba(0,0,0,0.8);
+            font-size: 30px;
+        }
+       #copy
+       {
+           height: 300px;
+           width:300px;
+           border-radius: 50%;
+           border: none;
+           outline:none;
+           text-align: center;
+           box-shadow:10px 10px 5px rgba(0,0,0,0.5);
+           margin-top:400px;
+           font-size: 30px;
+       }
+       #block
+       {
+           height:50px;
+           width: 350px;
+           padding-top: 0.5px;
+           margin-left:30px;
+       }
+       #color1
+       {
+        float: left;
+       }
+       #color2
+       {
+        float: right;
+        margin-right:30px;
+       }
+</style>
+<body>
+    <div class="book-section">
+        <p>WELCOME TO <a href="index.html" target="_blank">SNOOPCODE</a> COLOR PALETTE</p>
+         <div class="container">
+                <div class="right">
+                        <figure class="back" id="back-cover">
+
+                        </figure>
+                        <figure class="front" style="padding-top:40px;" >
+                               <h1 style="font-size:30px;color:#333;font-family: cursive">COLOR CODES</h1>
+                                <div id="color1">
+                               <div id="block" style="background-color:#f70025">
+                                   <h3>#f70025</h3>
+                               </div>
+                               <div id="block" style="background-color:#f25c00">
+                                    <h3>#f25c00</h3>
+                                </div>
+                                <div id="block" style="background-color:#f9a603">
+                                        <h3>#f9a603</h3>
+                                    </div>
+                                    <div id="block" style="background-color:#a1be95">
+                                            <h3>#a1be95</h3>
+                                        </div>
+                                        <div id="block" style="background-color:#e2dfa2">
+                                                <h3>#e2dfa2</h3>
+                                            </div>
+                                            <div id="block" style="background-color:#92aac7">
+                                                    <h3>#92aac7</h3>
+                                                </div>
+                                                <div id="block" style="background-color:#ed5752">
+                                                        <h3>#ed5752</h3>
+                                                    </div>
+                                                    <div id="block" style="background-color:#4897d8">
+                                                            <h3>#4897d8</h3>
+                                                        </div>
+                                                        <div id="block" style="background-color:#ffdb5c">
+                                                                <h3>#ffdb5c</h3>
+                                                            </div>
+                                                            <div id="block" style="background-color:#fa6e59">
+                                                                    <h3>#fa6e59</h3>
+                                                                </div>
+                                                                <div id="block" style="background-color:#f8a055">
+                                                                        <h3>#f8a055</h3>
+                                                                    </div>
+                                                                    <div id="block" style="background-color:#af4425">
+                                                                            <h3>#af4425</h3>
+                                                                        </div>
+                                                                        <div id="block" style="background-color:#662e1c">
+                                                                                <h3>#662e1c</h3>
+                                                                            </div>
+                               </div>
+                               <div id="color2">
+                                    <div id="block" style="background-color:#ebdcb2">
+                                        <h3>#ebdcb2</h3>
+                                    </div>
+                                    <div id="block" style="background-color:#c9a66b">
+                                         <h3>#c9a66b</h3>
+                                     </div>
+                                     <div id="block" style="background-color:#c1e1dc">
+                                             <h3>#c1e1dc</h3>
+                                         </div>
+                                         <div id="block" style="background-color:#4c3f54">
+                                                 <h3>#4c3f54</h3>
+                                             </div>
+                                             <div id="block" style="background-color:#d13525">
+                                                     <h3>#d13525</h3>
+                                                 </div>
+                                                 <div id="block" style="background-color:#f2c057">
+                                                         <h3>#f2c057</h3>
+                                                     </div>
+                                                     <div id="block" style="background-color:#486824">
+                                                             <h3>#486824</h3>
+                                                         </div>
+                                                         <div id="block" style="background-color:#faaf08">
+                                                                 <h3>#faaf08</h3>
+                                                             </div>
+                                                             <div id="block" style="background-color:#fa812f">
+                                                                     <h3>#fa812f</h3>
+                                                                 </div>
+                                                                 <div id="block" style="background-color:#fa4032">
+                                                                         <h3>#fa4032</h3>
+                                                                     </div>
+                                                                     <div id="block" style="background-color:#fef3e2">
+                                                                             <h3>#fef3e2</h3>
+                                                                         </div>
+                                                                         <div id="block" style="background-color:#f4ec6a">
+                                                                                 <h3>#f4ec6a</h3>
+                                                                             </div>
+                                                                             <div id="block" style="background-color:#bbcf4a">
+                                                                                     <h3>#bbcf4a</h3>
+                                                                                 </div>
+                                    </div>
+                       </figure>
+                    </div>
+                <div class="right">
+                        <figure class="back" style="padding-top:40px;">
+                                <h1 style="font-size:30px;color:#333;font-family: cursive">COLOR CODES</h1>
+                                <div id="color1">
+                                        <div id="block" style="background-color:#ffd64d">
+                                            <h3>#ffd64d</h3>
+                                        </div>
+                                        <div id="block" style="background-color:#9bc01c">
+                                             <h3>#9bc01c</h3>
+                                         </div>
+                                         <div id="block" style="background-color:#2e2300">
+                                                 <h3>#2e2300</h3>
+                                             </div>
+                                             <div id="block" style="background-color:#6e6702">
+                                                     <h3>#6e6702</h3>
+                                                 </div>
+                                                 <div id="block" style="background-color:#c05805">
+                                                         <h3>#c05805</h3>
+                                                     </div>
+                                                     <div id="block" style="background-color:#db9501">
+                                                             <h3>#db9501</h3>
+                                                         </div>
+                                                         <div id="block" style="background-color:#50312f">
+                                                                 <h3>#50312f</h3>
+                                                             </div>
+                                                             <div id="block" style="background-color:#cb0000">
+                                                                     <h3>#cb0000</h3>
+                                                                 </div>
+                                                                 <div id="block" style="background-color:#e4ea8c">
+                                                                         <h3>#e4ea8c</h3>
+                                                                     </div>
+                                                                     <div id="block" style="background-color:#3f6c45">
+                                                                             <h3>#3f6c45</h3>
+                                                                         </div>
+                                                                         <div id="block" style="background-color:#34888c">
+                                                                                 <h3>#34888c</h3>
+                                                                             </div>
+                                                                             <div id="block" style="background-color:#7caa2d">
+                                                                                     <h3>#7caa2d</h3>
+                                                                                 </div>
+                                                                                 <div id="block" style="background-color:#cb6318">
+                                                                                         <h3>#cb6318</h3>
+                                                                                     </div>
+                                        </div>
+                                        <div id="color2">
+                                             <div id="block" style="background-color:#0f1b07">
+                                                 <h3>#0f1b07</h3>
+                                             </div>
+                                             <div id="block" style="background-color:#ffffff">
+                                                  <h3>#ffffff</h3>
+                                              </div>
+                                              <div id="block" style="background-color:#5c821a">
+                                                      <h3>#5c821a</h3>
+                                                  </div>
+                                                  <div id="block" style="background-color:#c6d166">
+                                                          <h3>#c6d166</h3>
+                                                      </div>
+                                                      <div id="block" style="background-color:#00293c">
+                                                              <h3>#00283c</h3>
+                                                          </div>
+                                                          <div id="block" style="background-color:#1e656d">
+                                                                  <h3>#1e656d</h3>
+                                                              </div>
+                                                              <div id="block" style="background-color:#f1f3ce">
+                                                                      <h3>#f1f3ce</h3>
+                                                                  </div>
+                                                                  <div id="block" style="background-color:#f62a00">
+                                                                          <h3>#f62a00</h3>
+                                                                      </div>
+                                                                      <div id="block" style="background-color:#626d71">
+                                                                              <h3>#626d71</h3>
+                                                                          </div>
+                                                                          <div id="block" style="background-color:#cdcdc0">
+                                                                                  <h3>#cdcdc0</h3>
+                                                                              </div>
+                                                                              <div id="block" style="background-color:#ddbc95">
+                                                                                      <h3>#ddbc95</h3>
+                                                                                  </div>
+                                                                                  <div id="block" style="background-color:#b38867">
+                                                                                          <h3>#1995ad</h3>
+                                                                                      </div>
+                                                                                      <div id="block" style="background-color:#1e1f26">
+                                                                                              <h3>#1e1f26</h3>
+                                                                                          </div>
+                                             </div>
+                        </figure>
+                        <figure class="front" style="padding-top:40px;" >
+                               <h1 style="font-size:30px;color:#333;font-family: cursive">COLOR CODES</h1>
+                                <div id="color1">
+                               <div id="block" style="background-color:#f98866">
+                                   <h3>#f98866</h3>
+                               </div>
+                               <div id="block" style="background-color:#ff420e">
+                                    <h3>#ff420e</h3>
+                                </div>
+                                <div id="block" style="background-color:#80BD9e">
+                                        <h3>#80BD9e</h3>
+                                    </div>
+                                    <div id="block" style="background-color:#89DA59">
+                                            <h3>#89DA59</h3>
+                                        </div>
+                                        <div id="block" style="background-color:#336B87">
+                                                <h3>#336B87</h3>
+                                            </div>
+                                            <div id="block" style="background-color:#2A3132">
+                                                    <h3>#2A3132</h3>
+                                                </div>
+                                                <div id="block" style="background-color:#763626">
+                                                        <h3>#763626</h3>
+                                                    </div>
+                                                    <div id="block" style="background-color:#46211a">
+                                                            <h3>#46211a</h3>
+                                                        </div>
+                                                        <div id="block" style="background-color:#a43820">
+                                                                <h3>#a43820</h3>
+                                                            </div>
+                                                            <div id="block" style="background-color:#003b46">
+                                                                    <h3>#003b46</h3>
+                                                                </div>
+                                                                <div id="block" style="background-color:#c4dfe6">
+                                                                        <h3>#c4dfe6</h3>
+                                                                    </div>
+                                                                    <div id="block" style="background-color:#021c1e">
+                                                                            <h3>#021c1e</h3>
+                                                                        </div>
+                                                                        <div id="block" style="background-color:#f18d9e">
+                                                                                <h3>#f18d9e</h3>
+                                                                            </div>
+                               </div>
+                               <div id="color2">
+                                    <div id="block" style="background-color:#4cb5f5">
+                                        <h3>#4cb5f5</h3>
+                                    </div>
+                                    <div id="block" style="background-color:#b7b8b6">
+                                         <h3>#b7b8b6</h3>
+                                     </div>
+                                     <div id="block" style="background-color:#34675c">
+                                             <h3>#34675c</h3>
+                                         </div>
+                                         <div id="block" style="background-color:#b3c100">
+                                                 <h3>#b3c100</h3>
+                                             </div>
+                                             <div id="block" style="background-color:#de7a22">
+                                                     <h3>#de7a22</h3>
+                                                 </div>
+                                                 <div id="block" style="background-color:#20948b">
+                                                         <h3>#20948b</h3>
+                                                     </div>
+                                                     <div id="block" style="background-color:#6ab187">
+                                                             <h3>#6ab187</h3>
+                                                         </div>
+                                                         <div id="block" style="background-color:#8d230f">
+                                                                 <h3>#8d230f</h3>
+                                                             </div>
+                                                             <div id="block" style="background-color:#1e434c">
+                                                                     <h3>#1e434c</h3>
+                                                                 </div>
+                                                                 <div id="block" style="background-color:#9b4f0f">
+                                                                         <h3>#9b4f0f</h3>
+                                                                     </div>
+                                                                     <div id="block" style="background-color:#c99e10">
+                                                                             <h3>#c99e10</h3>
+                                                                         </div>
+                                                                         <div id="block" style="background-color:#1995ad">
+                                                                                 <h3>#1995ad</h3>
+                                                                             </div>
+                                                                             <div id="block" style="background-color:#f52549">
+                                                                                     <h3>#f52549</h3>
+                                                                                 </div>
+                                    </div>
+                       </figure>
+                    </div>
+            <div class="right">
+                        <figure class="back" style="background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);">
+                                <input type="text" value="background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);" id="myInput" style="opacity:0">
+                                <button onclick="myFunction()" id="copy" style="background-image: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);">Copy CSS</button>
+                        </figure>
+                 <figure class="front" style="background-image: linear-gradient(to top, #c71d6f 0%, #d09693 100%);">
+                        <input type="text" value="background-image: linear-gradient(to top, #c71d6f 0%, #d09693 100%);" id="myInput" style="opacity:0">
+                        <button onclick="myFunction()" id="copy" style="background-image: linear-gradient(to top, #c71d6f 0%, #d09693 100%);">Copy CSS</button>
+                </figure>
+             </div>
+             <div class="right">
+                 <figure class="back" style="background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);">
+                        <input type="text" value="background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);" id="myInput" style="opacity:0">
+                        <button onclick="myFunction()" id="copy" style="background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);">Copy CSS</button>
+              </figure>
+                 <figure class="front" style="background-image: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);">
+                        <input type="text" value="background-image: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);" id="myInput" style="opacity:0">
+                        <button onclick="myFunction()" id="copy" style="background-image: linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%);">Copy CSS</button>
+              </figure>
+             </div>
+             <div class="right">
+                 <figure class="back" style="background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%);">
+                        <input type="text" value="background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%);" id="myInput" style="opacity:0">
+                        <button onclick="myFunction()" id="copy" style="background-image: linear-gradient(to right, #d7d2cc 0%, #304352 100%);">Copy CSS</button>
+              </figure>
+                 <figure class="front" style="background-image: linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%);">
+                        <input type="text" value="background-image: linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%);" id="myInput" style="opacity:0">
+                        <button onclick="myFunction()" id="copy" style="background-image: linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%);">Copy CSS</button>
+              </figure>
+             </div>
+             <div class="right">
+                 <figure class="back" style="background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);">
+                        <input type="text" value="background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);" id="myInput" style="opacity:0">
+                        <button onclick="myFunction()" id="copy" style="background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);">Copy CSS</button>
+              </figure>
+                 <figure class="front" style="background-image: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%);">
+                        <input type="text" value="background-image: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%);" id="myInput" style="opacity:0">
+                        <button onclick="myFunction()" id="copy" style="background-image: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%);">Copy CSS</button>
+              </figure>
+             </div>
+             <div class="right">
+                 <figure class="back" style="background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);">
+                        <input type="text" value="background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);" id="myInput" style="opacity:0">
+                        <button onclick="myFunction()" id="copy" style="background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);">Copy CSS</button>
+              
+                </figure>
+                 <figure class="front" style="background-image: linear-gradient(to top, #cc208e 0%, #6713d2 100%);">
+                        <input type="text" value="background-image: linear-gradient(to top, #cc208e 0%, #6713d2 100%);" id="myInput" style="opacity:0">
+                        <button onclick="myFunction()" id="copy" style="background-image: linear-gradient(to top, #cc208e 0%, #6713d2 100%);">Copy CSS</button>
+                </figure>
+             </div>
+             <div class="right">
+                 <figure class="back" style="background-image: linear-gradient(to top, #0fd850 0%, #f9f047 100%);">
+                        <input type="text" value="background-image: linear-gradient(to top, #0fd850 0%, #f9f047 100%);" id="myInput" style="opacity:0">
+                        <button onclick="myFunction()" id="copy" style="background-image: linear-gradient(to top, #0fd850 0%, #f9f047 100%);">Copy CSS</button>
+                </figure>
+                 <figure class="front" id="cover">
+                     <h1 >COLOR PALETTES</h1>
+                     <p></p>
+                     <br><br>
+                     <img style="height:400px;width:400px;" src="Artists-Palette-And-Brush.png" alt="">
+     </figure>
+             </div>
+         </div>
+         <button onclick="turnLeft()">Prev</button> <button onclick="turnRight()">Next</button>
+         <br/>
+     </div>
+     
+     <script>
+            function myFunction() {
+              var copyText = document.getElementById("myInput");
+              copyText.select();
+              document.execCommand("copy");
+            }
+            </script>
+    <script type="text/javascript">
+        var currentPage = 0;
+        var right = document.getElementsByClassName("right");
+    var si = right.length;
+    var z=1;
+    function turnRight()
+    {
+        if(si>=1){
+            si--;
+        }
+        else{
+            si=right.length-1;
+            function sttmot(i){
+                setTimeout(function(){right[i].style.zIndex="auto";},300);
+            }
+            for(var i=0;i<right.length;i++){
+                right[i].className="right";
+                sttmot(i);
+                z=1;
+            }
+        }
+        right[si].classList.add("flip");
+        z++;
+        right[si].style.zIndex=z;
+    }
+    function turnLeft()
+    {
+        if(si<right.length){
+            si++;
+        }
+        else{
+            si=1;
+            for(var i=right.length-1;i>0;i--){
+                right[i].classList.add("flip");
+                right[i].style.zIndex=right.length+1-i;
+            }
+        }
+        right[si-1].className="right";
+        setTimeout(function(){right[si-1].style.zIndex="auto";},350);
+    }
+    </script>
+</body>
+</html>

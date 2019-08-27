@@ -1,0 +1,52 @@
+.container {
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	display: flex;
+	flex-flow: row wrap;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.logo {
+	position: relative;
+	width: 180px;
+	height: 180px;
+	padding: 0 10px 10px 0;
+}
+.logo:nth-child(2) {
+	transform: rotate(90deg);
+}
+.logo:nth-child(3) {
+	transform: rotate(-90deg);
+}
+.logo:nth-child(4) {
+	transform: rotate(180deg);
+}
+.logo .small {
+	position: absolute;
+	right: 10px;
+	height: 80px;
+	width: 80px;
+	background: blue;
+	border-radius: 100% 100% 0 100%;
+}
+.logo .large {
+	position: absolute;
+	bottom: 10px;
+	width: 180px;
+	height: 80px;
+	border-radius: 40px;
+}
+.logo .blue {
+	background: rgb(8, 164, 226);
+}
+.logo .green {
+	background: rgb(4, 88, 4);
+}
+.logo .red {
+	background: rgb(226, 59, 162);
+}
+.logo .yellow {
+	background: rgb(114, 114, 8);
+}
